@@ -22,7 +22,7 @@ view: sql_runner_query2 {
   derived_table: {
     sql: select m_workflow.workflow_id, m_workflow.WORKFLOW_TYPE_ID,
         m_Workflow.WORKFLOW_NAME,m_workflow.ACTIVE_FLG,m_Workflow.CREATE_USER, M_TRACK_WORKFLOW_INSTANCE.STATUS_ID,
-        m_workflow_type.workflow_type
+        m_workflow_type.workflow_type, M_WORKFLOW_INSTANCE_STATUS.status
             from M_workflow
             inner join M_workflow_type
             on m_workflow.workflow_type_id=m_workflow_type.workflow_type_id
@@ -73,6 +73,11 @@ view: sql_runner_query2 {
     sql: ${TABLE}.workflow_type ;;
   }
 
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
   set: detail {
     fields: [
       workflow_id,
@@ -81,7 +86,8 @@ view: sql_runner_query2 {
       active_flg,
       create_user,
       status_id,
-      workflow_type
+      workflow_type,
+      status
     ]
   }
 }

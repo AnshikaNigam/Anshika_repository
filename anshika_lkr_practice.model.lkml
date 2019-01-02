@@ -1,4 +1,4 @@
-connection: "cdptraining01_metastore"
+connection: "cdptraining01_sqls_staging_conn"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
